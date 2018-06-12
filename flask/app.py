@@ -26,10 +26,8 @@ def add():
 def find():
     found = None
     if request.method == 'POST':
-        search_id = int(request.form['search_id'])
-        for user in users:
-            if user.id == search_id:
-                found = user
+        search_id = request.form['search_id']
+        found = [user for user in users if user.id == int(search_id)][0]
     return render_template('find.html', user=found)
 
 
