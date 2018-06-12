@@ -30,6 +30,26 @@ def find():
         found = [user for user in users if user.id == int(search_id)][0]
     return render_template('find.html', user=found)
 
+@app.route('/edit', methods=['GET','POST'])
+def edit():
+    found = None
+    if request.method == 'POST':
+        try:
+            search_id = request.form['useredit-id']
+            found = [user for user in users if user.id == int(search_id)][0]
+        except:
+            return redirect(url_for('index'))
+
+        if request.args.get('new_first_name'):
+            new_first_name = request.form['new_first_name']
+            found.f_name = new_first_name
+
+        if request.args.get('new_last_name'):
+            new_last_name = request.form['new_last_name']
+            found.l_name = new_last_name
+
+        return redirect(url_for('index'))
+    return render_template('edit.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

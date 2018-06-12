@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="{{url_for('edit')}}" method="POST">
+        <input type="text" name="useredit-id" placeholder="User id">
+        <input type="text" name="new_first_name" placeholder="New First Name">
+        <input type="text" name="new_last_name" placeholder="New last name">
+        <button type="submit">Edit</button>
+    </form>
+{% endblock %}
