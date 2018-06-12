@@ -2,7 +2,7 @@
 {% block content %}
     <ul>
         {% for user in users %}
-            <li>{{user.full_name()}}</li>
+            <li>{{user.full_name()}} {{user.id}}</li>
         {% endfor %}
     </ul>
 {% endblock %}

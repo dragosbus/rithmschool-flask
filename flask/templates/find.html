@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{{url_for('find')}}" method="POST">
+        <input type="text" name="search_id">
+        <button type="submit">Search</button>
+</form>
+<p>{{user.full_name()}}</p>
+{% endblock %}

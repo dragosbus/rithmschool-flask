@@ -7,6 +7,21 @@
     <title>Flask App-RithmSchool</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{url_for('index')}}">Home</a>
+                </li>
+                <li>
+                    <a href="{{url_for('add')}}">Add User</a>
+                </li>
+                <li>
+                    <a href="{{url_for('find')}}">Find User</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     {% block content %}
     {% endblock %}
 </body>

@@ -1,7 +1,8 @@
 from flask import Flask, render_template, url_for, request, redirect
 from Users import Users
 
-users = []
+u1 = Users('dragos', 'busuioc')
+users = [u1]
 
 app = Flask(__name__)
 
@@ -20,6 +21,17 @@ def index():
 @app.route('/add')
 def add():
     return render_template('add.html')
+
+@app.route('/find', methods=['GET','POST'])
+def find():
+    found = None
+    if request.method == 'POST':
+        search_id = int(request.form['search_id'])
+        for user in users:
+            if user.id == search_id:
+                found = user
+    return render_template('find.html', user=found)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
