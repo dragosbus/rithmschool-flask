@@ -41,7 +41,7 @@ document.querySelector('.navigation').addEventListener('click', e => {
 
 function closeModal() {
     //close the overlay
-    document.querySelector('.overlay').addEventListener('click', e => {
-        document.querySelector('.overlay').classList.toggle('hide-modal');
+    document.querySelector('.close-modal').addEventListener('click', e => {
+        document.body.removeChild(document.querySelector('.overlay'));
     });
 }

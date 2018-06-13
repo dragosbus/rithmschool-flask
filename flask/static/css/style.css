@@ -69,6 +69,26 @@ header nav ul li a {
     animation-timing-function: ease-in;
 }
 
+.close-modal {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: rgb(206, 28, 58);
+    background: #fff;
+    border-radius: 50%;
+    border: none;
+    padding: 1rem;
+    font-size: 1.65rem;
+    cursor: pointer;
+    transition: transform 0.55s ease-in,
+        font-size 0.55s ease-in;
+}
+
+.close-modal:hover {
+    transform: scale(1.15, 1.15);
+    font-size: 1.75rem;
+}
+
 .hide-modal {
     display: none;
 }
