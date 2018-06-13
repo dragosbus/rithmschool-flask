@@ -3,7 +3,9 @@
     <main>
         <ul>
             {% for user in users %}
-                <li>{{user.full_name()}} {{user.id}}</li>
+                {% for t in tup %}
+                <li>{{t.first_name}}</li>
+                {% endfor %}
             {% endfor %}
         </ul>
     </main>

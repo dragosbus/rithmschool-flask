@@ -1,8 +1,26 @@
 from flask import Flask, render_template, url_for, request, redirect
-from Users import Users
+import psycopg2
+    
 
-u1 = Users('dragos', 'busuioc')
-users = [u1]
+
+def create_user(f_name, l_name):
+    con = psycopg2.connect(database='flaskfundamentals')
+    cur = con.cursor()
+    cur.execute('''INSERT INTO users(first_name, last_name) VALUES(%s, %s)''', (f_name, l_name))
+    con.commit()
+    cur.close()
+    con.close()
+
+def read_users():
+    con = psycopg2.connect(database='flaskfundamentals')
+    cur = con.cursor()
+    cur.execute('''SELECT * FROM users''')
+    res = cur.fetchall()
+    con.commit()
+    cur.close()
+    con.close()
+
+    return res
 
 app = Flask(__name__)
 
@@ -13,10 +31,12 @@ def main_page():
 @app.route('/index', methods=['GET','POST'])
 def index():
     if request.method == 'POST':
-        new_user = Users(request.form['first_name'], request.form['last_name'])
-        users.append(new_user)
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        create_user(first_name, last_name)
+        
         return redirect(url_for('index'))
-    return render_template('index.html', users=users)
+    return render_template('index.html', users=[])
 
 @app.route('/add')
 def add():
@@ -26,8 +46,11 @@ def add():
 def find():
     found = None
     if request.method == 'POST':
-        search_id = request.form['search_id']
-        found = [user for user in users if user.id == int(search_id)][0]
+        try:
+            search_id = request.form['search_id']
+            found = read_users()[int(search_id)]
+        except:
+            redirect(url_for('index'))
     return render_template('find.html', user=found)
 
 @app.route('/edit', methods=['GET','POST'])

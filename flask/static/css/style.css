@@ -93,6 +93,20 @@ header nav ul li a {
     display: none;
 }
 
+form {
+    width: 100%;
+    padding: 1rem;
+}
+
+form input {
+    height: 35px;
+    border: none;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+    border-radius: 5px;
+    font-size: 1.6rem;
+    padding: 1rem 2.5rem;
+}
+
 @keyframes slide-down {
     0%{
         transform: translate3d(0, -60px, 0);
