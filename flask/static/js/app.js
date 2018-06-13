@@ -24,23 +24,26 @@ function createModal(page) {
 
 document.querySelector('.navigation').addEventListener('click', e => {
     if (e.target.tagName === 'A') {
-        e.preventDefault();
-        let page = e.target.href;
-        let htmlText = '';
-        fetchPage(page).then(res => {
-            let fromIndex = res.indexOf('<main>');
-            let toIndex = res.indexOf('</main>');
-            htmlText = res.substring(fromIndex, toIndex);
-        }).then(() => {
-            let modal = createModal(htmlText);
-            document.body.appendChild(modal);
-            closeModal();
-        });
+        //mantain the default behavior for index page
+        if (e.target.href.indexOf('index') < 0) {
+            e.preventDefault();
+
+            let htmlText = '';
+            fetchPage(e.target.href).then(res => {
+                let fromIndex = res.indexOf('<main>');
+                let toIndex = res.indexOf('</main>');
+                htmlText = res.substring(fromIndex, toIndex);
+            }).then(() => {
+                let modal = createModal(htmlText);
+                document.body.appendChild(modal);
+                closeModal();
+            });
+        }
     }
 });
 
 function closeModal() {
-    //close the overlay
+    //remove the overlay
     document.querySelector('.close-modal').addEventListener('click', e => {
         document.body.removeChild(document.querySelector('.overlay'));
     });
