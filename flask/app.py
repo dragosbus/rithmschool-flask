@@ -11,10 +11,10 @@ def create_user(f_name, l_name):
     cur.close()
     con.close()
 
-def read_users():
+def read_users(q):
     con = psycopg2.connect(database='flaskfundamentals')
     cur = con.cursor()
-    cur.execute('''SELECT * FROM users''')
+    cur.execute(q)
     res = cur.fetchall()
     con.commit()
     cur.close()
@@ -33,10 +33,10 @@ def index():
     if request.method == 'POST':
         first_name = request.form['first_name']
         last_name = request.form['last_name']
-        create_user(first_name, last_name)
-        
+        create_user(first_name, last_name)     
         return redirect(url_for('index'))
-    return render_template('index.html', users=[])
+
+    return render_template('index.html', users=read_users('''SELECT * FROM users'''))
 
 @app.route('/add')
 def add():
@@ -48,7 +48,7 @@ def find():
     if request.method == 'POST':
         try:
             search_id = request.form['search_id']
-            found = read_users()[int(search_id)]
+            found = read_users('SELECT * FROM users WHERE user_id = {}'.format(int(search_id)))
         except:
             redirect(url_for('index'))
     return render_template('find.html', user=found)
