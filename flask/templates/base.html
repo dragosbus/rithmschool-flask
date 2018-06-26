@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Flask App-RithmSchool</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Students</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="navigation">
-                <li>
-                    <a href="{{url_for('index')}}">Home</a>
-                </li>
-                <li>
-                    <a href="{{url_for('add')}}">Add User</a>
-                </li>
-                <li>
-                    <a href="{{url_for('find')}}">Find User</a>
-                </li>
-                <li>
-                    <a href="{{url_for('edit')}}">Edit</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    {% block content %}
-    {% endblock %}
-
-    <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block content %}
+  {% endblock %}
 </body>
 </html>

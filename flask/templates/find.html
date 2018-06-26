@@ -1,10 +1,5 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
-        <main>
-                <form action="{{url_for('find')}}" method="POST">
-                        <input type="text" name="search_id">
-                        <button type="submit">Search</button>
-                </form>
-                <p>{{user[0]}}</p>
-        </main>
+  <p>{{student.first_name}} {{student.last_name}}</p>
+  <a href="{{url_for('edit_user', id=student.id)}}">Edit</a>
 {% endblock %}
