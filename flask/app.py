@@ -1,7 +1,9 @@
 from flask import Flask, render_template, url_for, request, redirect
 from students import Students
+from flask_modus import Modus
 
 app = Flask(__name__)
+modus = Modus(app)
 
 students_list = []
 
@@ -25,9 +27,13 @@ def new():
     return render_template('new.html')
 
 
-@app.route('/students/<int:id>')
+@app.route('/students/<int:id>', methods=['GET','PATCH'])
 def find(id):
     student = [student for student in students_list if student.id == id][0]
+    if request.method == b'PATCH':
+        student.first_name = request.form['first_name']
+        student.last_name = request.form['last_name']
+        return redirect(url_for('index'))
     return render_template('find.html', student=student)
 
 
