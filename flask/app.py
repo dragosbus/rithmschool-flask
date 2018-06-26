@@ -27,12 +27,15 @@ def new():
     return render_template('new.html')
 
 
-@app.route('/students/<int:id>', methods=['GET','PATCH'])
+@app.route('/students/<int:id>', methods=['GET','PATCH', 'DELETE'])
 def find(id):
     student = [student for student in students_list if student.id == id][0]
     if request.method == b'PATCH':
         student.first_name = request.form['first_name']
         student.last_name = request.form['last_name']
+        return redirect(url_for('index'))
+    if request.method == b'DELETE':
+        students_list.remove(student)
         return redirect(url_for('index'))
     return render_template('find.html', student=student)
 
