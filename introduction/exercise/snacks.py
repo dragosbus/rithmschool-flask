@@ -3,8 +3,8 @@ class Snacks():
     snack_id = 1
 
     def __init__(self, name, kind):
-        self.snack_id = Snacks.id
         self.name = name
         self.kind = kind
+        self.id = Snacks.snack_id
 
         Snacks.snack_id += 1
