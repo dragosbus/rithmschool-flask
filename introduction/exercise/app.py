@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 from snacks import Snacks
+from flask_modus import Modus
 
 
 app = Flask(__name__)
+modus = Modus(app)
 
 snacks_list = [Snacks('hamburger', 'bh')]
 
@@ -15,9 +17,13 @@ def root():
     return render_template('index.html', snacks=snacks_list)
 
 
-@app.route('/show/<int:id>')
+@app.route('/show/<int:id>', methods=['GET', 'PATCH'])
 def show(id):
     snack = [snack for snack in snacks_list if snack.id == id][0]
+    if request.method == b'PATCH':
+        snack.name = request.form['name']
+        snack.kind = request.form['kind']
+        return redirect(url_for('root'))
     return render_template('show.html', snack=snack)
 
 
@@ -28,7 +34,8 @@ def add():
 
 @app.route('/show/<int:id>/edit')
 def edit(id):
-    return render_template('edit.html')
+    snack = [snack for snack in snacks_list if snack.id == id][0]
+    return render_template('edit.html', snack=snack)
 
 
 if __name__ == '__main__':
