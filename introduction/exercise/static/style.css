@@ -77,3 +77,38 @@ header h1 a:hover,
   color: #000;
   font-size: 1.75rem;
 }
+
+.snack {
+  width: 90%;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.snack h2 {
+  font-size: 2rem;
+  color: rgba(0,0,0,0.85);
+}
+
+.snack h3 {
+  font-size: 1.7rem;
+  color: rgba(0,0,0,0.85);
+}
+
+.edit,
+.remove {
+  width: 120px;
+  padding: 1rem 2.5rem;
+  background: blue;
+  color: #fff;
+  margin: 2rem auto;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: inherit;
+  text-align: center;
+}
+
+.remove {
+  background: red;
+  text-decoration: none;
+}

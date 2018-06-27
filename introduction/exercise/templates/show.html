@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>{{snack.name}}</h2>
+  <div class="snack">
+    <h2>Name: {{snack.name}}</h2>
+    <h3>Kind: {{snack.kind}}</h3>
+    <a href="{{url_for('root')}}" class="remove" type="button">Remove</a>
+  </div>
+  <a href="{{url_for('edit')}}" class="edit" type="button">Edit</a>
 {% endblock %}
