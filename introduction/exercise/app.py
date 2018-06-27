@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 snacks_list = [Snacks('hamburger', 'bh')]
 
+
 @app.route('/', methods=['GET', 'POST'])
 def root():
     if request.method == 'POST':
